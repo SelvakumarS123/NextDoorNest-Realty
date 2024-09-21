@@ -1,48 +1,28 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+
+//MUI
 import { Button, Typography, AppBar, Toolbar } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
+import zIndex from '@mui/material/styles/zIndex';
+
+//components
+import Header from './Header';
+
+//assets
+import city from './Assets/city.jpg';
 
 function Home() {
   return (
   <>
-    <CssBaseline />
-    <AppBar position="static" style={{ backgroundColor: "black" }}>
-        <Toolbar>
-          <div style={{marginRight:"auto"}}><Button color="inherit"><Typography variant='h4'>NDN</Typography></Button></div>
-          <div>
-            <Button color="inherit" style={{ marginRight: "2rem" }}>Listings</Button>
-            <Button color="inherit" style={{ marginLeft: "2rem" }}>Agencies</Button>
-          </div>
-          <div style={{marginLeft:"auto", marginRight:"6rem"}}>
-            <Button sx={{
-              backgroundColor: 'green',
-              color: 'white',
-              fontSize: '1.1rem',
-              width: '15rem',
-              marginLeft: '1rem',
-              transition: 'background-color 0.3s',
-              '&:hover': {
-                backgroundColor: 'blue',
-              },
-              }}>Add Property
-            </Button>
-
-            <Button sx={{
-              backgroundColor: 'white',
-              color: 'black',
-              fontSize: '1.1rem',
-              width: '15rem',
-              marginLeft: '1rem',
-              transition: 'background-color 0.3s',
-              '&:hover': {
-                backgroundColor: 'green',
-              },
-              }}>Login
-            </Button>
-          </div>
-        </Toolbar>
-      </AppBar>
+      <div style={{position:'relative'}}>
+        <img style={{ width: '100%', height: '92vh' }} src={city} alt="City" />
+        <div style={{ position: 'absolute', zIndex: 100, top: '100px', left: '20px', textAlign:'center' }}>
+          <Typography variant='h2' style={{color:'white', fontWeight:'bolder'}}>
+                FIND YOUR <span style={{color:'green'}}>NEXT PROPERTY</span> ON THE NDN-Realty WEBSITE
+          </Typography>
+          <Button sx={{fontSize:'2.5rem', borderRadius:'15px', backgroundColor:'green', marginTop:'2rem', boxShadow:'3px 3px 3px white',}} variant='contained'>See all properties</Button>
+        </div>
+      </div>
   </>
   );
 }
