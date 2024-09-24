@@ -28,8 +28,20 @@ Install PostgreSQL16(Under "Categories", expand "Spatial extensions" -> Check "P
 install pgadmin
 setup db
 backend>pip install psycopg2
-run migrations(opt)
+
+(opt)python manage.py createsuperuser
+(opt)run migrations -> python manage.py makemigrations, python manage.py migrate     
 
 |comit|
 
+REST api -> To convert the instances of the listing model into json data(for serializing) -> listings/api/serializers.py
+
+backend>pip install djangorestframework
+
+create a view that will show all of the instances of listing model in their json format
+-> listings/api/views.py
+
+backend>pip install djangorestframework-gis (makes it easier to access the location data from the frontend /api/listings)
+
+|comit|
 
