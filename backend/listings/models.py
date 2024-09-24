@@ -3,6 +3,7 @@ from django.contrib.gis.db import models
 from django.utils import timezone
 from django.contrib.gis.geos import Point
 
+
 # Create your models here.
 class Listing(models.Model):
 
