@@ -7,7 +7,7 @@ pip install django
 django-admin startproject backend(opt)
 cd backend
 python manage.py startapp listings(opt)
-pip install (gdal-wheel)
+pip install <--path to {(gdal-wheel)gdal304(cp311)}-->
 
 #settings.py
     import os
@@ -22,5 +22,14 @@ pip install (gdal-wheel)
         'listings.apps.ListingsConfig',
         'django.contrib.gis',
 
+|comit|
+
+Install PostgreSQL16(Under "Categories", expand "Spatial extensions" -> Check "PostGISXXXXX")
+install pgadmin
+setup db
+backend>pip install psycopg2
+run migrations(opt)
+
+|comit|
 
 
