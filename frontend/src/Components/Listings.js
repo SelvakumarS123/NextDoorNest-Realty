@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // Leaflet
 import { MapContainer, TileLayer, useMap, Marker, Popup, Polyline, Polygon } from 'react-leaflet';
-import { Icon } from "leaflet";
+import { CircleMarker, Icon } from "leaflet";
 // MUI
-import { Button, Typography, AppBar, Toolbar, Card, CardHeader, CardMedia, CardContent } from '@mui/material';
+import { Button, Typography, AppBar, Toolbar, Card, CardHeader, CardMedia, CardContent, CircularProgress } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 // Map icons
 import houseIconPng from "./Assets/Mapicons/house.png";
@@ -12,8 +12,11 @@ import officeIconPng from "./Assets/Mapicons/office.png";
 // Assets
 import img1 from "./Assets/img1.jpg";
 import myListings from "./Assets/Data/Dummydata";
+//Axios
+import Axios from 'axios';
 
 function Listings() {
+  //fetch('http://127.0.0.1:8000/api/listings/').then(response => response.json()).then(data=>console.log(data)) //take the response and transform it into json format
    // const navigate = useNavigate();
   const houseIcon = new Icon({
     iconUrl: houseIconPng,
@@ -55,6 +58,40 @@ function Listings() {
     [51.52, -0.12],
   ];
 
+  const [allListings, setAllListings] = useState([]);
+	const [dataIsLoading, setDataIsLoading] = useState(true);
+
+  useEffect(() => {
+		const source = Axios.CancelToken.source();
+		async function GetAllListings() {
+      try{
+        const response = await Axios.get("http://127.0.0.1:8000/api/listings/",
+				{ cancelToken: source.token });
+        // console.log(response.data);
+        setAllListings(response.data);
+        setDataIsLoading(false);
+      }catch(error){
+        console.log(error.response);
+      }
+		}
+		GetAllListings();
+    return () => {
+			source.cancel();
+		};
+	}, []);
+
+  if(dataIsLoading===false){
+    console.log(allListings[0].location);
+  }
+
+  if(dataIsLoading===true){
+    return (
+      <Grid container justifyContent="center" alignItems="center" style={{height:'100vh'}}>
+        <CircularProgress />
+      </Grid>
+    )
+  }
+
   // Function to determine the icon based on listing type
   function IconDisplay(listing) {
     if (listing.listing_type === 'House') {
@@ -70,7 +107,7 @@ function Listings() {
   return (
     <Grid container>
       <Grid item size={4}>
-        {myListings.map((listing) => {
+        {allListings.map((listing) => {
           return (
             <Card sx={{
               margin: '0.5rem',
@@ -135,7 +172,7 @@ function Listings() {
               />
               <Polyline positions={polyOne} weight={5} color='green' />
               <Polygon positions={polygonOne} color='yellow' fillColor='blue' fillOpacity={0.7} opacity={0}/>
-              {myListings.map((listing) => {
+              {allListings.map((listing) => {
                 return (
                   <Marker
                     key={listing.id}

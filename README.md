@@ -45,3 +45,8 @@ backend>pip install djangorestframework-gis (makes it easier to access the locat
 
 |comit|
 
+Setup Django-CORS to make request from frontend to backend
+
+backend>pip install django-cors-headers
+
+frontend>npm install axios
