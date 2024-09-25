@@ -11,7 +11,7 @@ import apartmentIconPng from "./Assets/Mapicons/apartment.png";
 import officeIconPng from "./Assets/Mapicons/office.png";
 // Assets
 import img1 from "./Assets/img1.jpg";
-import myListings from "./Assets/Data/Dummydata";
+import myListings from "./Assets/Data/Dummydata"; //to be removed
 //Axios
 import Axios from 'axios';
 
@@ -127,7 +127,7 @@ function Listings() {
                 paddingRight: '1rem',
                 paddingLeft: '1rem',
                 height: '20rem',
-                width: '32rem',
+                width: '30rem',
               }}
                 component="img"
                 image={listing.picture1}
@@ -181,7 +181,7 @@ function Listings() {
                   >
                     <Popup>
                       <Typography variant='h5'>{listing.title}</Typography>
-                      <img src={listing.picture1} style={{ height: '14rem', width: '18rem' }} alt={listing.title} />
+                      <img src={listing.picture1} style={{ height: '14rem', width: '19rem' }} alt={listing.title} />
                       <Typography variant='body1'>{listing.description.substring(0, 150)}...</Typography>
                       <Button variant='contained' fullWidth>Details</Button>
                     </Popup>

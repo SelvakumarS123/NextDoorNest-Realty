@@ -50,3 +50,9 @@ Setup Django-CORS to make request from frontend to backend
 backend>pip install django-cors-headers
 
 frontend>npm install axios
+
+|comit|
+
+backend>python -m pip install Pillow
+
+|comit|
